@@ -6,14 +6,16 @@ from flask import Flask, jsonify, request
 
 
 #  Database Connection
+import os
+
 def create_connection():
     try:
         conn = mysql.connector.connect(
-            host="127.0.0.1",
-            user="root",
-            password="admin",
-            database="trackify",
-            auth_plugin="mysql_native_password"
+            host=os.getenv("DB_HOST", "crossover.proxy.rlwy.net"),
+            user=os.getenv("DB_USER", "root"),
+            password=os.getenv("DB_PASSWORD", "QmPuDwlRcYXBDFSwgmEtlveSrssNqaMq"),
+            database=os.getenv("DB_NAME", "trackify"),
+            port=int(os.getenv("DB_PORT", 37055))
         )
         if conn.is_connected():
             print("✅ Connection Successful")
