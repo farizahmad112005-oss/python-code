@@ -514,6 +514,11 @@ def CompletedTaskCount():
     task_count = total_CompletedTasks()
     return jsonify(task_count)
 
+@app.route("/api/test")
+def test():
+    test_msg="Test Successfull"
+    return(test_msg)
+
 
 @app.route("/api/employees/<int:employee_id>/tasks/<int:task_id>", methods=['POST'])
 def assign_task_to_employee(employee_id, task_id):
